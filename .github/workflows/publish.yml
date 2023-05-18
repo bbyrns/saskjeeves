@@ -1,18 +1,21 @@
-name: publish
+name: publish docker image
 on: [push]
 jobs:
-publish-saskjeeves-image:
-runs-on: ubuntu-latest
-steps:
-  - uses: actions/checkout@v2
-  - name: Login to GitHub Container Registry
-  uses: docker/login-action@v1
-  with:
-  registry: ghcr.io
-  username: ${{ github.actor }}
-  password: ${{ secrets.GITHUB_TOKEN }}
-  - name: Build the saskjeeves Docker image
-run: |
-       docker build . --tag ghcr.io/bbyrnsb/saskjeeves:latest
-       docker run ghcr.io/bbyrns/saskjeeves:latest
-       docker push ghcr.io/bbyrns/saskjeeves:latest
+  publish-saskjeeves-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build the saskjeeves Docker image
+        run: |
+          docker build . --tag ghcr.io/bbyrnsb/saskjeeves:latest
+          docker run ghcr.io/bbyrns/saskjeeves:latest
+          docker push ghcr.io/bbyrns/saskjeeves:latest
