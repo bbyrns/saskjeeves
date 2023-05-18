@@ -1,4 +1,4 @@
-name: publish docker image
+name: Publish Saskjeeves docker image
 on: [push]
 jobs:
   publish-saskjeeves-image:
