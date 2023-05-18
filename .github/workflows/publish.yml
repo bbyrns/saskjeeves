@@ -16,6 +16,6 @@ jobs:
 
       - name: Build the saskjeeves Docker image
         run: |
-          docker build . --tag ghcr.io/bbyrnsb/saskjeeves:latest
+          docker build . --tag ghcr.io/bbyrns/saskjeeves:latest
           docker run ghcr.io/bbyrns/saskjeeves:latest
           docker push ghcr.io/bbyrns/saskjeeves:latest
